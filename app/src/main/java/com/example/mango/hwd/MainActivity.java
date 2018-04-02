@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         getLoaderManager().initLoader(1, null, this);
     }
 
-
+    //Loading the Data Through Loader
     @Override
     public Loader<List<Tweet>> onCreateLoader(int i, Bundle bundle) {
         return new TweeterLoader(MainActivity.this);
@@ -41,8 +41,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<Tweet>> loader, List<Tweet> tweets) {
         TweetAdapter adapter = new TweetAdapter(this, 0, tweets);
+
+        //Setting Addapter to list
         tweetList.setAdapter(adapter);
-        Log.w("Name", tweets.get(0).getName());
+        //Log.w("Name", tweets.get(0).getName());
     }
     @Override
     public void onLoaderReset(Loader<List<Tweet>> loader) {

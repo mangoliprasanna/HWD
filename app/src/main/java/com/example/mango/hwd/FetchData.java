@@ -18,6 +18,7 @@ import java.util.List;
  */
 
 public class FetchData {
+    //Can be called from any other classes
     public String getData(String[] input_string)
     {
         StringBuilder ouputString = new StringBuilder();
@@ -31,6 +32,7 @@ public class FetchData {
         return makeHttpRequest(createUrl(input_string));
     }
 
+    //Converting the String to URL
     private URL createUrl(String input_url) {
         URL url = null;
         try{
@@ -41,6 +43,7 @@ public class FetchData {
         return url;
     }
 
+    //Read Data from Stream using String Builder
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
@@ -55,6 +58,7 @@ public class FetchData {
         return output.toString();
     }
 
+    //Make HTTP request to server returning respnse as string
     private String makeHttpRequest(URL url) {
         String jsonResponse = "";
         HttpURLConnection urlConnection = null;

@@ -27,7 +27,7 @@ public class TweeterLoader extends AsyncTaskLoader<List<Tweet>> {
 
     @Override
     public List<Tweet> loadInBackground() {
-        Log.w("loadInBackground  : ", "Called");
+        //Log.w("loadInBackground  : ", "Called");
         FetchData obj = new FetchData();
         String json_Data = obj.getData("https://twitter-133.herokuapp.com/");
         List<Tweet> finalList = new ArrayList<>();

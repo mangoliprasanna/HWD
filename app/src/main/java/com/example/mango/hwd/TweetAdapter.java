@@ -35,26 +35,29 @@ public class TweetAdapter extends ArrayAdapter<Tweet> {
         }
         Tweet curruntTweet = getItem(position);
 
-
+        //Setting name of user who tweeted
         TextView name = (TextView) listView.findViewById(R.id.name);
         name.setText(curruntTweet.getName());
 
+        //User @ Screenname @mangoli
         TextView screenName =  (TextView) listView.findViewById(R.id.screenName);
         screenName.setText(curruntTweet.getScreenName());
 
+        //Tweet likes
         TextView likes = (TextView) listView.findViewById(R.id.likes);
         likes.setText(String.valueOf(curruntTweet.getLikes()));
 
-
+        //Tweet Content
         TextView content = (TextView) listView.findViewById(R.id.content);
-
         String tweetContent = curruntTweet.getDesc();
+        //Highlighting the words starting with # (hashtag)
         Pattern pattern = Pattern.compile("#\\w+");
         Matcher matcher = pattern.matcher(tweetContent);
         while (matcher.find())
         {
             tweetContent = tweetContent.replace(matcher.group(), "<font color='#c40000'>"+ matcher.group()+"</font>");
         }
+        //Highlighting links
         String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
         pattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(tweetContent);
@@ -67,19 +70,17 @@ public class TweetAdapter extends ArrayAdapter<Tweet> {
         }
         content.setText(Html.fromHtml(tweetContent));
 
+        //Tweet location
         TextView location = (TextView) listView.findViewById(R.id.location);
         location.setText(curruntTweet.getLocation());
 
+        //User profile image
         ImageView profile = (ImageView) listView.findViewById(R.id.profile);
         Picasso.with(getContext())
                 .load(curruntTweet.getProfile())
                 .into(profile);
 
-
-
-
-
-        Log.w("Link", curruntTweet.getLink());
+        //Log.w("Link", curruntTweet.getLink());
         return listView;
     }
 }
